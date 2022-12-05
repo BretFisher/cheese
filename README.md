@@ -1,5 +1,8 @@
 # cheese servers 🧀
 
+[![Docker Build](https://github.com/BretFisher/cheese/actions/workflows/call-docker-build.yaml/badge.svg)](https://github.com/BretFisher/cheese/actions/workflows/call-docker-build.yaml)
+[![Lint Code Base](https://github.com/BretFisher/cheese/actions/workflows/call-super-linter.yaml/badge.svg)](https://github.com/BretFisher/cheese/actions/workflows/call-super-linter.yaml)
+
 Simple NGINX web servers of cheese for yummy demos.
 
 Inspired by [errm/cheese](https://hub.docker.com/r/errm/cheese/tags/)
