@@ -1,0 +1,126 @@
+---
+# template source: https://github.com/bretfisher/docker-build-workflow/blob/main/templates/call-docker-build.yaml
+name: Docker Build
+
+on:
+  push:
+    branches:
+      - main
+    # don't rebuild image if someone only edited unrelated files
+    paths-ignore:
+      - 'README.md'
+      - '.github/linters/**'
+  pull_request:
+    # don't rebuild image if someone only edited unrelated files
+    paths-ignore:
+      - 'README.md'
+      - '.github/linters/**'
+
+
+
+jobs:
+
+  call-docker-build-cheddar:
+
+    name: Cheddar Call Docker Build
+
+    uses: bretfisher/docker-build-workflow/.github/workflows/reusable-docker-build.yaml@main
+
+    permissions:
+      contents: read
+      packages: write # needed to push docker image to ghcr.io
+    
+    secrets:
+
+      dockerhub-username: ${{ secrets.DOCKERHUB_USERNAME }}
+      dockerhub-token: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    with:
+      
+      dockerhub-enable: true
+      ghcr-enable: true
+
+      image-names: |
+        ${{ github.repository }}
+        ghcr.io/${{ github.repository }}
+      
+      tag-rules: |
+       type=raw,value=cheddar,enable=${{ endsWith(github.ref, github.event.repository.default_branch) }}
+       type=raw,value=cheddar-stable-{{date 'YYYYMMDDHHmmss'}},enable=${{ endsWith(github.ref, github.event.repository.default_branch) }}
+       type=ref,event=pr,prefix=cheddar
+       type=raw,value=cheddar-gha-${{ github.run_id }}
+
+      target: cheddar
+      
+      platforms: linux/amd64,linux/arm64, linux/arm/v7
+
+
+  call-docker-build-stilton:
+
+    name: Stilton Call Docker Build
+
+    uses: bretfisher/docker-build-workflow/.github/workflows/reusable-docker-build.yaml@main
+
+    permissions:
+      contents: read
+      packages: write # needed to push docker image to ghcr.io
+    
+    secrets:
+
+      dockerhub-username: ${{ secrets.DOCKERHUB_USERNAME }}
+      dockerhub-token: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    with:
+      
+      dockerhub-enable: true
+      ghcr-enable: true
+
+      image-names: |
+        ${{ github.repository }}
+        ghcr.io/${{ github.repository }}
+
+      tag-rules: |
+       type=raw,value=stilton,enable=${{ endsWith(github.ref, github.event.repository.default_branch) }}
+       type=raw,value=stilton-stable-{{date 'YYYYMMDDHHmmss'}},enable=${{ endsWith(github.ref, github.event.repository.default_branch) }}
+       type=ref,event=pr,prefix=stilton
+       type=raw,value=stilton-gha-${{ github.run_id }}
+
+      target: stilton
+      
+      platforms: linux/amd64,linux/arm64,linux/arm/v7
+      
+
+  call-docker-build-wensleydale:
+
+    name: Wensleydale Call Docker Build
+
+    uses: bretfisher/docker-build-workflow/.github/workflows/reusable-docker-build.yaml@main
+
+    permissions:
+      contents: read
+      packages: write # needed to push docker image to ghcr.io
+    
+    secrets:
+
+      dockerhub-username: ${{ secrets.DOCKERHUB_USERNAME }}
+      dockerhub-token: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    with:
+      
+      dockerhub-enable: true
+      ghcr-enable: true
+
+      image-names: |
+        ${{ github.repository }}
+        ghcr.io/${{ github.repository }}
+
+      tag-rules: |
+       type=raw,value=wensleydale,enable=${{ endsWith(github.ref, github.event.repository.default_branch) }}
+       type=raw,value=wensleydale-stable-{{date 'YYYYMMDDHHmmss'}},enable=${{ endsWith(github.ref, github.event.repository.default_branch) }}
+       type=ref,event=pr,prefix=wensleydale
+       type=raw,value=wensleydale-gha-${{ github.run_id }}
+
+      target: wensleydale
+      
+      platforms: linux/amd64,linux/arm64,linux/arm/v7
+      

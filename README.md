@@ -12,4 +12,4 @@ Cheese images are from Wikipedia Commons, with their own licenses:
 [stilton.jpg](https://commons.wikimedia.org/wiki/File:Stilton_Cheese_02.png) - CC-BY-SA-3.0
 [wensleydale.jpg](https://commons.wikimedia.org/wiki/File:Wensleydale_cheese_2.jpg) - Public Domain
 
-The rest of this repository is public domain under the [Unlicense](https://unlicense.org)
+The rest of this repository is public domain under the [Unlicense](https://unlicense.org).
