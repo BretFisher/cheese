@@ -47,9 +47,7 @@ jobs:
       
       tag-rules: |
        type=raw,value=cheddar,enable=${{ endsWith(github.ref, github.event.repository.default_branch) }}
-       type=raw,value=cheddar-stable-{{date 'YYYYMMDDHHmmss'}},enable=${{ endsWith(github.ref, github.event.repository.default_branch) }}
        type=ref,event=pr,prefix=cheddar
-       type=raw,value=cheddar-gha-${{ github.run_id }}
 
       target: cheddar
       
@@ -84,9 +82,7 @@ jobs:
 
       tag-rules: |
        type=raw,value=stilton,enable=${{ endsWith(github.ref, github.event.repository.default_branch) }}
-       type=raw,value=stilton-stable-{{date 'YYYYMMDDHHmmss'}},enable=${{ endsWith(github.ref, github.event.repository.default_branch) }}
        type=ref,event=pr,prefix=stilton
-       type=raw,value=stilton-gha-${{ github.run_id }}
 
       target: stilton
       
@@ -121,9 +117,7 @@ jobs:
 
       tag-rules: |
        type=raw,value=wensleydale,enable=${{ endsWith(github.ref, github.event.repository.default_branch) }}
-       type=raw,value=wensleydale-stable-{{date 'YYYYMMDDHHmmss'}},enable=${{ endsWith(github.ref, github.event.repository.default_branch) }}
        type=ref,event=pr,prefix=wensleydale
-       type=raw,value=wensleydale-gha-${{ github.run_id }}
 
       target: wensleydale
       

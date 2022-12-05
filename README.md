@@ -1,4 +1,4 @@
-# cheese servers 🧀
+# Cheese servers 🧀
 
 [![Docker Build](https://github.com/BretFisher/cheese/actions/workflows/call-docker-build.yaml/badge.svg)](https://github.com/BretFisher/cheese/actions/workflows/call-docker-build.yaml)
 [![Lint Code Base](https://github.com/BretFisher/cheese/actions/workflows/call-super-linter.yaml/badge.svg)](https://github.com/BretFisher/cheese/actions/workflows/call-super-linter.yaml)
